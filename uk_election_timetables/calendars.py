@@ -3,7 +3,7 @@ import os
 from datetime import datetime, date
 from enum import Enum
 
-from sopn_publish_date.date import days_before, DateMatcher
+from uk_election_timetables.date import days_before, DateMatcher
 
 
 class Country(Enum):

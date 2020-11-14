@@ -1,11 +1,11 @@
-from sopn_publish_date.calendars import (
+from uk_election_timetables.calendars import (
     UnitedKingdomBankHolidays,
     Country,
     Region,
     working_days_before,
     FixedDates,
 )
-from sopn_publish_date.election_ids import (
+from uk_election_timetables.election_ids import (
     type_and_poll_date,
     AmbiguousElectionIdError,
     NoSuchElectionTypeError,

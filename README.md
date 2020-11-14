@@ -1,30 +1,27 @@
-# sopn-publish-date
+# uk-election-timetables
 
-[![Build Status](https://travis-ci.org/mrwilson/sopn-publish-date.svg?branch=master)](https://travis-ci.org/mrwilson/sopn-publish-date)
-[![Documentation Status](https://readthedocs.org/projects/sopn-publish-date/badge/?version=latest)](https://sopn-publish-date.readthedocs.io/en/latest/overview.html?badge=latest)
-[![Coverage Status](https://coveralls.io/repos/github/mrwilson/sopn-publish-date/badge.svg?branch=master)](https://coveralls.io/github/mrwilson/sopn-publish-date?branch=master)
-[![PyPI](https://img.shields.io/pypi/v/sopn-publish-date.svg)](https://pypi.org/project/sopn-publish-date/)
+[![Build Status](https://travis-ci.org/DemocracyClub/uk-election-timetables.svg?branch=master)](https://travis-ci.org/DemocracyClub/uk-election-timetables)
+[![Documentation Status](https://readthedocs.org/projects/uk-election-timetables/badge/?version=latest)](https://uk-election-timetables.readthedocs.io/en/latest/overview.html?badge=latest)
+[![Coverage Status](https://coveralls.io/repos/github/DemocracyClub/uk-election-timetables/badge.svg?branch=master)](https://coveralls.io/github/DemocracyClub/uk-election-timetables?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/uk-election-timetables.svg)](https://pypi.org/project/uk-election-timetables/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 
-> Given the polling day of an election in the UK, when should the Statement of Persons Nominated (SoPN) be published?
+> Given the polling day of an election in the UK, when are candidate lists published?
 
-When an election is called in the United Kingdom, the voting public must have access to the list of candidates who have been nominated to that post.
+This library encapsulates timetable legislation for elections run in the United Kingdom and its devolved administrations.
 
-These documents are called Statements of Persons Nominated, and must be published a set number of working days ahead of the actual election date. The number varies based on:
+The election timetable varies based on:
 
  * *Type of Post* - Parliamentary, Local, devolved Government, etc.
  * *Country* - The United Kingdom has up to four different rules for the same type of election, one for each country.
  * *Calendar* - each country has their own unique set of Bank Holidays.
 
-
-This library encapsulates timetable legislation for elections run in the United Kingdom and its devolved administrations.
-
-## Usage
+## Usage (publishing of candidate lists)
 
 ```python
 
-from sopn_publish_date import StatementPublishDate
+from uk_election_timetables.sopn import StatementPublishDate
 from datetime import date
 
 publish_date = StatementPublishDate()
@@ -36,11 +33,11 @@ print(publish_date.national_assembly_for_wales(date(2016, 5, 5)))
 
 ## Documentation
 
-Hosted by readthedocs at [https://sopn-publish-date.readthedocs.io/](https://sopn-publish-date.readthedocs.io/en/latest/overview.html)
+Hosted by readthedocs at [https://uk-election-timetables.readthedocs.io/](https://uk-election-timetables.readthedocs.io/en/latest/overview.html)
 
 ## Installation
 
-`pip install sopn_publish_date`
+`pip install uk_election_timetables`
  
 ## Test
 

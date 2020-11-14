@@ -4,17 +4,17 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="sopn-publish-date",
-    url="https://github.com/mrwilson/sopn-publish-date",
+    name="uk-election-timetables",
+    url="https://github.com/DemocracyClub/uk-election-timetables",
     version="1.4.3",
-    description="Derive publish dates of Statements of Persons Nominated for UK elections",
+    description="Derives significant dates for UK elections",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Alex Wilson",
     author_email="alex+github@probablyfine.co.uk",
     license="MIT",
     packages=find_packages(),
-    package_data={"sopn_publish_date": ["bank-holidays.json"]},
+    package_data={"uk_election_timetables": ["bank-holidays.json"]},
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Topic :: Software Development",
