@@ -8,3 +8,4 @@ build/
 docs/_build/
 .coverage
 htmlcov/
+__pycache__
