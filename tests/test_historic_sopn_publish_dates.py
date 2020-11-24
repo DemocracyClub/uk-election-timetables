@@ -1,10 +1,17 @@
-from uk_election_timetables.sopn import StatementPublishDate
-from datetime import timedelta, datetime
 from csv import DictReader
-from pytest import mark
-from warnings import catch_warnings, simplefilter
+from datetime import timedelta, datetime
 
-sopn_publish_date = StatementPublishDate()
+from pytest import mark
+
+from uk_election_timetables.elections import (
+    NorthernIrelandAssemblyElection,
+    ScottishParliamentElection,
+    SeneddCymruElection,
+    GreaterLondonAssemblyElection,
+    PoliceAndCrimeCommissionerElection,
+    MayoralElection,
+    UKParliamentElection,
+)
 
 with open("./tests/historic_sopn_data.csv") as f:
     historic_data = list(DictReader(row for row in f if not row.startswith("--")))
@@ -50,9 +57,9 @@ def generate_test_cases(search, exceptions=None):
 @mark.parametrize("row", generate_test_cases("nia"), ids=generate_test_id)
 def test_northern_ireland_assembly(row):
 
-    expected_date = sopn_publish_date.northern_ireland_assembly(
-        read_date(row["election_date"])
-    )
+    poll_date = read_date(row["election_date"])
+
+    expected_date = NorthernIrelandAssemblyElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -61,9 +68,9 @@ def test_northern_ireland_assembly(row):
 
 @mark.parametrize("row", generate_test_cases("sp"), ids=generate_test_id)
 def test_scottish_parliament(row):
-    expected_date = sopn_publish_date.scottish_parliament(
-        read_date(row["election_date"])
-    )
+    poll_date = read_date(row["election_date"])
+
+    expected_date = ScottishParliamentElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -71,13 +78,10 @@ def test_scottish_parliament(row):
 
 
 @mark.parametrize("row", generate_test_cases("naw"), ids=generate_test_id)
-def test_national_assembly_for_wales(row):
-    with catch_warnings():
-        simplefilter("ignore")
+def test_old_national_assembly_for_wales(row):
+    poll_date = read_date(row["election_date"])
 
-        expected_date = sopn_publish_date.national_assembly_for_wales(
-            read_date(row["election_date"])
-        )
+    expected_date = SeneddCymruElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -86,9 +90,9 @@ def test_national_assembly_for_wales(row):
 
 @mark.parametrize("row", generate_test_cases("gla."), ids=generate_test_id)
 def test_greater_london_assembly(row):
-    expected_date = sopn_publish_date.greater_london_assembly(
-        read_date(row["election_date"])
-    )
+    poll_date = read_date(row["election_date"])
+
+    expected_date = GreaterLondonAssemblyElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -97,9 +101,9 @@ def test_greater_london_assembly(row):
 
 @mark.parametrize("row", generate_test_cases("pcc"), ids=generate_test_id)
 def test_police_and_crime_commissioner(row):
-    expected_date = sopn_publish_date.police_and_crime_commissioner(
-        read_date(row["election_date"])
-    )
+    poll_date = read_date(row["election_date"])
+
+    expected_date = PoliceAndCrimeCommissionerElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -112,7 +116,9 @@ def test_police_and_crime_commissioner(row):
     ids=generate_test_id,
 )
 def test_mayoral(row):
-    expected_date = sopn_publish_date.mayor(read_date(row["election_date"]))
+    poll_date = read_date(row["election_date"])
+
+    expected_date = MayoralElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -121,9 +127,9 @@ def test_mayoral(row):
 
 @mark.parametrize("row", generate_test_cases("mayor.london"), ids=generate_test_id)
 def test_mayor_of_london(row):
-    expected_date = sopn_publish_date.greater_london_assembly(
-        read_date(row["election_date"])
-    )
+    poll_date = read_date(row["election_date"])
+
+    expected_date = GreaterLondonAssemblyElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
@@ -132,7 +138,9 @@ def test_mayor_of_london(row):
 
 @mark.parametrize("row", generate_test_cases("parl"), ids=generate_test_id)
 def test_uk_parliament(row):
-    expected_date = sopn_publish_date.uk_parliament(read_date(row["election_date"]))
+    poll_date = read_date(row["election_date"])
+
+    expected_date = UKParliamentElection(poll_date).sopn_publish_date
 
     actual_date = read_date(row["sopn_publish_date"])
 
