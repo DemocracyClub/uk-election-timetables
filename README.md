@@ -41,7 +41,7 @@ Hosted by readthedocs at [https://uk-election-timetables.readthedocs.io/](https:
  
 ## Test
 
-`python -m pytest -v`
+`pytest`
 
 ## Supported Election Types
 
