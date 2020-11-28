@@ -6,14 +6,14 @@ with open("README.md", "r") as fh:
 setup(
     name="uk-election-timetables",
     url="https://github.com/DemocracyClub/uk-election-timetables",
-    version="2.0.0",
+    version="2.0.1",
     description="Derives significant dates for UK elections",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Alex Wilson",
     author_email="alex+github@probablyfine.co.uk",
     license="MIT",
-    packages=find_packages(),
+    packages=find_packages(exclude=("tests",)),
     package_data={"uk_election_timetables": ["bank-holidays.json"]},
     classifiers=[
         "License :: OSI Approved :: MIT License",
