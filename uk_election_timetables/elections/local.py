@@ -5,10 +5,6 @@ from uk_election_timetables.election import Election
 
 
 class LocalElection(Election):
-    def __init__(self, poll_date: date, country: Country):
-        self.poll_date = poll_date
-        self.country = country
-
     @property
     def sopn_publish_date(self) -> date:
         """
@@ -37,5 +33,5 @@ class LocalElection(Election):
         return working_days_before(
             self.poll_date,
             days_prior,
-            type(self).BANK_HOLIDAY_CALENDAR.from_country(self.country),
+            super()._calendar(),
         )
