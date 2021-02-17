@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name="uk-election-timetables",
     url="https://github.com/DemocracyClub/uk-election-timetables",
-    version="2.1.0",
+    version="2.1.1",
     description="Derives significant dates for UK elections",
     long_description=long_description,
     long_description_content_type="text/markdown",
