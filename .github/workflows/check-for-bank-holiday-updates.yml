@@ -1,0 +1,33 @@
+name: Check for updates to GOV.UK bank holiday JSON
+
+on:
+  schedule:
+    # Runs every day at 12:30pm
+    - cron: '30 12 * * *'
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check for updates
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        curl -XGET https://www.gov.uk/bank-holidays.json -o current.json
+
+        diff --brief current.json uk_election_timetables/bank-holidays.json
+
+        if [[ $? -ne 0 ]]; then
+          echo "New bank holiday JSON is live"
+
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/DemocracyClub/uk-election-timetables/issues \
+            -d '{"title":"Update bank-holidays.json from GOV.UK"}'
+        else
+          echo "bank-holidays.json is up to date"
+        fi
