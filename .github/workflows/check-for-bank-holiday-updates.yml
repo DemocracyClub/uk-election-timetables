@@ -16,6 +16,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        set +e
+        
         curl -XGET https://www.gov.uk/bank-holidays.json -o current.json
 
         diff --brief current.json uk_election_timetables/bank-holidays.json
