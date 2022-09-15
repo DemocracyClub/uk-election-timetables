@@ -24,6 +24,14 @@ election = UKParliamentElection(date(2019, 2, 21))
 print(election.sopn_publish_date) # date(2019, 1, 25)
 ```
 
+## Updating Bank Holiday Dates
+This project checks daily for additions to the government bank holiday dataset at https://www.gov.uk/bank-holidays.json. When an addition is identified in the .gov file, this project will automatically create a GitHub issue to update our local bank holiday dataset.
+
+To update `bank-holidays.json` with additions from the government supplied file, run the following within your venv:
+```commandline
+python manage_bank_holidays.py --update
+```
+
 ## Documentation
 
 Hosted by readthedocs at [https://uk-election-timetables.readthedocs.io/](https://uk-election-timetables.readthedocs.io/en/latest/overview.html)
