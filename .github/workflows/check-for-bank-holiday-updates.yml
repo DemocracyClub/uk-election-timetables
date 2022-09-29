@@ -18,9 +18,7 @@ jobs:
       run: |
         set +e
         
-        curl -XGET https://www.gov.uk/bank-holidays.json -o current.json
-
-        diff --brief current.json uk_election_timetables/bank-holidays.json
+        python manage_bank_holidays.py --diff
 
         if [[ $? -ne 0 ]]; then
           echo "New bank holiday JSON is live"
