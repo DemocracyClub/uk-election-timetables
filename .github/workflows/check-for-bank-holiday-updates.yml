@@ -4,6 +4,9 @@ on:
   schedule:
     # Runs every day at 12:30pm
     - cron: '30 12 * * *'
+  push:
+    branches:
+      - hotfix/github-issue-creation
 
 jobs:
   deploy:
@@ -13,8 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check for updates
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         set +e
         
@@ -26,8 +27,9 @@ jobs:
           curl \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/DemocracyClub/uk-election-timetables/issues \
-            -d '{"title":"Update bank-holidays.json from GOV.UK"}'
+            -d '{"title":"Update bank-holidays.json from GOV.UK"}' \
         else
           echo "bank-holidays.json is up to date"
         fi
