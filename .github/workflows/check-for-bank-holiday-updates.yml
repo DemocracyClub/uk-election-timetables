@@ -15,18 +15,10 @@ jobs:
     - name: Check for updates
       run: |
         set +e
-        
-        python manage_bank_holidays.py --diff
-
-        if [[ $? -ne 0 ]]; then
-          echo "New bank holiday JSON is live"
-
-          curl \
-            -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/DemocracyClub/uk-election-timetables/issues \
-            -d '{"title":"Update bank-holidays.json from GOV.UK"}'
-        else
-          echo "bank-holidays.json is up to date"
-        fi
+        pip install requests
+        python manage_bank_holidays.py --update
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        commit-message: Update bank holidays
+        title: Update bank holidays
