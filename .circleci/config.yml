@@ -36,6 +36,12 @@ jobs:
           # app-dir: ~/project/package-directory/  # If your requirements.txt isn't in the root directory.
           # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
       - run:
+          name: Ruff lint
+          command: ruff check .
+      - run:
+          name: Ruff Format
+          command: ruff format .
+      - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
