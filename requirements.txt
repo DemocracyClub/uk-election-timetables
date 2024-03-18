@@ -2,5 +2,3 @@ pytest==5.3.5
 sphinx-markdown-tables==0.0.12
 pytest-cov==2.10.1
 coveralls==2.1.2
-six==1.15.0
-black==22.8.0

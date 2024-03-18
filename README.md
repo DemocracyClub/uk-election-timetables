@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.com/DemocracyClub/uk-election-timetables.svg?branch=main)](https://travis-ci.com/DemocracyClub/uk-election-timetables)
 [![Documentation Status](https://readthedocs.org/projects/uk-election-timetables/badge/?version=latest)](https://uk-election-timetables.readthedocs.io/en/latest/overview.html?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/uk-election-timetables.svg)](https://pypi.org/project/uk-election-timetables/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 This library encapsulates timetable legislation for elections run in the United Kingdom and its devolved administrations.
 
