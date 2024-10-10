@@ -1,6 +1,6 @@
 # uk-election-timetables
 
-[![Build Status](https://travis-ci.com/DemocracyClub/uk-election-timetables.svg?branch=main)](https://travis-ci.com/DemocracyClub/uk-election-timetables)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/DemocracyClub/uk-election-timetables/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/DemocracyClub/uk-election-timetables/tree/main)
 [![Documentation Status](https://readthedocs.org/projects/uk-election-timetables/badge/?version=latest)](https://uk-election-timetables.readthedocs.io/en/latest/overview.html?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/uk-election-timetables.svg)](https://pypi.org/project/uk-election-timetables/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
