@@ -47,6 +47,7 @@ Hosted by readthedocs at [https://uk-election-timetables.readthedocs.io/](https:
 ## Supported Election Types
 
  - [x] Local
+ - [x] City of London Local
  - [x] United Kingdom Parliament
  - [x] Scottish Parliament
  - [x] Senedd Cymru
