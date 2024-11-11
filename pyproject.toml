@@ -1,0 +1,10 @@
+[tool.ruff]
+line-length = 80
+lint.ignore = ["E501"]
+lint.extend-select = [
+    "I",
+    "C4",
+    "SIM",
+    "Q003",
+    "RET",
+]
