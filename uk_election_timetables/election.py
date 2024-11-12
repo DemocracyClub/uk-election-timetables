@@ -1,12 +1,11 @@
 from abc import ABCMeta, abstractmethod
 from datetime import date, datetime, timezone
-
 from enum import Enum
 from typing import Dict, List
 
 from uk_election_timetables.calendars import (
-    UnitedKingdomBankHolidays,
     Country,
+    UnitedKingdomBankHolidays,
     working_days_before,
 )
 
@@ -109,6 +108,7 @@ class Election(metaclass=ABCMeta):
         for e in self.timetable:
             if e["event"] == event.name:
                 return e["date"]
+        raise KeyError("event not found")
 
     def is_before(self, event, date=None):
         if not date:

@@ -2,19 +2,16 @@ from datetime import date, datetime, timedelta
 from typing import List
 
 from uk_election_timetables.calendars import (
-    working_days_before,
     Country,
     UnitedKingdomBankHolidays,
+    working_days_before,
 )
-from uk_election_timetables.date import DateMatcher, WEEKEND
+from uk_election_timetables.date import WEEKEND, DateMatcher
 from uk_election_timetables.election import Election
 
 
 def _is_bank_holiday(date: date, bank_holidays: List[DateMatcher]) -> bool:
-    for bh in bank_holidays:
-        if bh.matches(date):
-            return True
-    return False
+    return any(bh.matches(date) for bh in bank_holidays)
 
 
 def _get_easter_break(bank_holidays: List[DateMatcher]) -> List[DateMatcher]:

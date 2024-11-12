@@ -1,9 +1,9 @@
 import json
 import os
-from datetime import datetime, date
+from datetime import date, datetime
 from enum import Enum
 
-from uk_election_timetables.date import days_before, DateMatcher
+from uk_election_timetables.date import DateMatcher, days_before
 
 
 class Country(Enum):
@@ -56,7 +56,8 @@ class BankHolidayCalendar:
         christmas_eve = DateMatcher(month=12, day=24)
 
         days_not_counted = [
-            BankHolidayCalendar.create_matcher_from_entry(entry) for entry in dates
+            BankHolidayCalendar.create_matcher_from_entry(entry)
+            for entry in dates
         ]
 
         self._bank_holidays = days_not_counted
@@ -84,7 +85,7 @@ class UnitedKingdomBankHolidays(object):
         with open(bank_holiday_json, "r", encoding="utf-8") as data:
             json_calendar = json.loads(data.read())
 
-            for country in json_calendar.keys():
+            for country in json_calendar:
                 self._calendar[country] = BankHolidayCalendar(
                     json_calendar[country]["events"]
                 )
@@ -116,10 +117,9 @@ class UnitedKingdomBankHolidays(object):
         """
         if country == Country.ENGLAND or country == Country.WALES:
             return self.england_and_wales()
-        elif country == Country.NORTHERN_IRELAND:
+        if country == Country.NORTHERN_IRELAND:
             return self.northern_ireland()
-        else:
-            return self.scotland()
+        return self.scotland()
 
 
 def working_days_before(

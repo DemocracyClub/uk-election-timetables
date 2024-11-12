@@ -1,6 +1,6 @@
 from datetime import date
 
-from uk_election_timetables.calendars import working_days_before, Country
+from uk_election_timetables.calendars import Country, working_days_before
 from uk_election_timetables.election import Election
 
 
@@ -25,17 +25,15 @@ class UKParliamentElection(Election):
         if self.country:
             return self.date_for_country(self.country)
 
-        else:
-            possible_dates = [
-                self.date_for_country(country)
-                for country in [
-                    Country.ENGLAND,
-                    Country.SCOTLAND,
-                    Country.NORTHERN_IRELAND,
-                ]
+        possible_dates = [
+            self.date_for_country(country)
+            for country in [
+                Country.ENGLAND,
+                Country.SCOTLAND,
+                Country.NORTHERN_IRELAND,
             ]
-
-            return min(possible_dates)
+        ]
+        return min(possible_dates)
 
     def date_for_country(self, country: Country) -> date:
         calendar = type(self).BANK_HOLIDAY_CALENDAR.from_country(country)

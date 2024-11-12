@@ -1,6 +1,6 @@
 from datetime import date
 
-from uk_election_timetables.calendars import working_days_before, Country
+from uk_election_timetables.calendars import Country, working_days_before
 from uk_election_timetables.election import Election
 
 
@@ -23,8 +23,8 @@ class ScottishParliamentElection(Election):
 
         if self.poll_date == date(2021, 5, 6):
             return working_days_before(self.poll_date, 21, super()._calendar())
-        else:
-            return super().postal_vote_application_deadline
+
+        return super().postal_vote_application_deadline
 
     @property
     def sopn_publish_date(self) -> date:
