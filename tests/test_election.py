@@ -51,7 +51,7 @@ def test_timetable_sort_order():
     assert election.timetable == [
         {
             "label": "List of candidates published",
-            "date": datetime.date(2021, 4, 9),
+            "date": datetime.date(2021, 4, 8),
             "event": "SOPN_PUBLISH_DATE",
         },
         {
@@ -190,9 +190,14 @@ election_types = [
         "expected_type": elections.PoliceAndCrimeCommissionerElection,
     },
     {
-        "election_id": "mayor.2019-02-21",
+        "election_id": "mayor.doncaster.2019-02-21",
         "country": None,
         "expected_type": elections.MayoralElection,
+    },
+    {
+        "election_id": "mayor.london.2019-02-21",
+        "country": None,
+        "expected_type": elections.GreaterLondonAssemblyElection,
     },
     # City of London
     {
