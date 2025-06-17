@@ -56,3 +56,4 @@ Hosted by readthedocs at [https://uk-election-timetables.readthedocs.io/](https:
  - [x] Mayoral (London)
  - [x] Greater London Assembly
  - [x] Police and Crime commissioner
+ - [x] Referendum
