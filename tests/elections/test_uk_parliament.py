@@ -49,13 +49,13 @@ def test_postal_vote_application_deadline_uk_parliament_2019():
 
 
 @pytest.mark.parametrize(
-    "country, deadline_date",
+    "country",
     [
-        (Country.ENGLAND, date(2023, 4, 3)),
-        (Country.SCOTLAND, date(2023, 4, 4)),  # No Easter Monday BH in Scotland
-        (Country.WALES, date(2023, 4, 3)),
+        Country.ENGLAND,
+        Country.SCOTLAND,
+        Country.WALES,
     ],
 )
-def test_vac_application_deadline_uk_parliament(country, deadline_date):
+def test_vac_application_deadline_uk_parliament(country):
     election = UKParliamentElection(date(2023, 4, 13), country=country)
-    assert election.vac_application_deadline == deadline_date
+    assert election.vac_application_deadline == date(2023, 4, 3)
