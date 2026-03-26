@@ -55,12 +55,10 @@ class BankHolidayCalendar:
     def __init__(self, dates):
         christmas_eve = DateMatcher(month=12, day=24)
 
-        days_not_counted = [
+        self._bank_holidays = [
             BankHolidayCalendar.create_matcher_from_entry(entry)
             for entry in dates
         ]
-
-        self._bank_holidays = days_not_counted
 
         self._exempted_dates = self._bank_holidays + [christmas_eve]
 
@@ -88,6 +86,24 @@ class UnitedKingdomBankHolidays(object):
             for country in json_calendar:
                 self._calendar[country] = BankHolidayCalendar(
                     json_calendar[country]["events"]
+                )
+
+            """
+            Easter Monday is not a bank holiday in Scotland
+            but it should be considered a non-working day
+            for the purposes of the working days calculation.
+
+            Grab all the Easter Mondays from the England & Wales calendar
+            and add them to Scotland as additional extempted days.
+            """
+            easter_mondays = [
+                entry
+                for entry in json_calendar["england-and-wales"]["events"]
+                if entry["title"] == "Easter Monday"
+            ]
+            for easter_monday in easter_mondays:
+                self._calendar["scotland"]._exempted_dates.append(
+                    BankHolidayCalendar.create_matcher_from_entry(easter_monday)
                 )
 
     def england_and_wales(self) -> BankHolidayCalendar:
